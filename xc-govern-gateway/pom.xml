@@ -9,7 +9,7 @@
         <relativePath>../xc-framework-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <!-- 治理网关 -->
     <artifactId>xc-govern-gateway</artifactId>
 
     <dependencies>

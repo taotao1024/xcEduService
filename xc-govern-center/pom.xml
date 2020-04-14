@@ -9,7 +9,7 @@
         <relativePath>../xc-framework-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <!-- 治理中心 -->
     <artifactId>xc-govern-center</artifactId>
 
     <dependencies>
