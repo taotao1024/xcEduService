@@ -25,10 +25,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+
 /**
  * http请求客户端
  *
- * @author Administrator
+ * @author yuanYuan
+ * @version 1.0
+ * @date 2020/4/10
  */
 public class HttpClient {
     private String url;

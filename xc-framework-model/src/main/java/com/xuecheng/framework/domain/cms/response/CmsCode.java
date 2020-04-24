@@ -1,6 +1,6 @@
 package com.xuecheng.framework.domain.cms.response;
 
-import com.xuecheng.framework.model.response.ResultCode;
+import com.xuecheng.framework.model.response.api.ResultCode;
 import lombok.ToString;
 
 /**

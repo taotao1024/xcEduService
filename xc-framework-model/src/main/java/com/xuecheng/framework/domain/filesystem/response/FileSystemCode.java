@@ -1,7 +1,7 @@
 package com.xuecheng.framework.domain.filesystem.response;
 
 import com.google.common.collect.ImmutableMap;
-import com.xuecheng.framework.model.response.ResultCode;
+import com.xuecheng.framework.model.response.api.ResultCode;
 import lombok.ToString;
 
 

@@ -10,6 +10,10 @@ import java.util.Map;
 
 /**
  * 解析JWT令牌工具类
+ *
+ * @author yuanYuan
+ * @version 1.0
+ * @date 2020/4/10
  */
 public class Oauth2Util {
 

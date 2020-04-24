@@ -4,7 +4,11 @@ import lombok.Data;
 import lombok.ToString;
 
 /**
- * Created by mrt on 2018/3/5.
+ * 公共请求数据
+ *
+ * @author yuanYuan
+ * @version 1.0
+ * @date 2020/3/24
  */
 @Data
 @ToString

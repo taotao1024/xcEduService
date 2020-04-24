@@ -8,7 +8,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by admin on 2018/3/5.
+ * MD5加密
+ *
+ * @author yuanYuan
+ * @version 1.0
+ * @date 2020/4/10
  */
 public class MD5Util {
 
@@ -135,27 +139,5 @@ public class MD5Util {
         } catch (Exception e) {
         }
         return sb.toString();
-    }
-
-    /**
-     * The main method.
-     *
-     * @param args the arguments
-     */
-    public static void main(String[] args) {
-
-        long beginTime = System.currentTimeMillis();
-        File fileZIP = new File("D:\\BaiduNetdiskDownload\\test1.avi");
-
-        String md5 = "";
-        try {
-            md5 = getFileMD5String(fileZIP);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        long endTime = System.currentTimeMillis();
-        System.out.println("MD5:" + md5 + "\n time:" + ((endTime - beginTime)) + "ms");
-
-        System.out.println(getStringMD5("111111"));
     }
 }

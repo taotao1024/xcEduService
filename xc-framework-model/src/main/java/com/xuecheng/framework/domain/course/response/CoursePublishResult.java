@@ -1,7 +1,7 @@
 package com.xuecheng.framework.domain.course.response;
 
 import com.xuecheng.framework.model.response.ResponseResult;
-import com.xuecheng.framework.model.response.ResultCode;
+import com.xuecheng.framework.model.response.api.ResultCode;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;

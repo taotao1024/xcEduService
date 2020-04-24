@@ -2,7 +2,7 @@ package com.xuecheng.framework.domain.filesystem.response;
 
 import com.xuecheng.framework.domain.filesystem.FileSystem;
 import com.xuecheng.framework.model.response.ResponseResult;
-import com.xuecheng.framework.model.response.ResultCode;
+import com.xuecheng.framework.model.response.api.ResultCode;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;

@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 身份校验过虑器
+ * 身份认证校验
+ * 网关只负责拦截认证,判断是否与权利访问.
  *
  * @author yuanYuan
  * @version 1.0

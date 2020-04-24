@@ -1,5 +1,7 @@
 package com.xuecheng.framework.utils;
 
+import org.apache.logging.log4j.util.Strings;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,18 +10,45 @@ import java.util.List;
  * 此文件作为视频文件处理父类，提供：
  * 1、查看视频时长
  * 2、校验两个视频的时长是否相等
+ * <p>
+ * Fast Forward MPEG
+ *
+ * @author yuanYuan
+ * @version 1.0
+ * @date 2020/4/10
  */
 public class VideoUtil {
 
-    //ffmpeg.exe的全路径
-    String ffmpeg_path = "C:/Program Files/Java/ffmpeg-20180227-fa0c9d6-win64-static/bin//ffmpeg.exe";
+    /**
+     * ffmpeg.exe的默认路径
+     */
+    private String ffmpegpath = "C:/Program Files/Java/ffmpeg-20180227-fa0c9d6-win64-static/bin//ffmpeg.exe";
 
-    public VideoUtil(String ffmpeg_path) {
-        this.ffmpeg_path = ffmpeg_path;
+    /**
+     * 使用默认路径实例化
+     */
+    public VideoUtil() {
+    }
+
+    /**
+     * 使用指定路径实例化
+     *
+     * @param ffmpegpath ffmpeg.exe的全路径
+     */
+    public VideoUtil(String ffmpegpath) {
+        if (Strings.isNotEmpty(ffmpegpath)) {
+            this.ffmpegpath = ffmpegpath;
+        }
     }
 
 
-    //检查视频时间是否一致
+    /**
+     * 检查视频时间是否一致
+     *
+     * @param source 源文件
+     * @param target 目标文件
+     * @return
+     */
     public Boolean check_video_time(String source, String target) {
         String source_time = get_video_time(source);
         //取出时分秒
@@ -36,14 +65,19 @@ public class VideoUtil {
         return false;
     }
 
-    //获取视频时间(时：分：秒：毫秒)
+    /**
+     * 获取视频时间(时：分：秒：毫秒)
+     *
+     * @param video_path 源文件
+     * @return
+     */
     public String get_video_time(String video_path) {
         /*
         - windows控制台命令
         - ffmpeg -i  lucene.mp4
          */
         List<String> commend = new ArrayList<String>();
-        commend.add(ffmpeg_path);
+        commend.add(ffmpegpath);
         commend.add("-i");
         commend.add(video_path);
         try {

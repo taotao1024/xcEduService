@@ -9,7 +9,6 @@ import net.lingala.zip4j.exception.ZipException;
  * @author yuanYuan
  * @version 1.0
  * @date
- * @deprecated 解压工具
  */
 public class ZipUtil {
 

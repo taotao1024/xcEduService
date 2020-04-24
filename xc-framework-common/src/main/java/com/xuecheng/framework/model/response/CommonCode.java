@@ -1,15 +1,14 @@
 package com.xuecheng.framework.model.response;
 
-import lombok.ToString;
+import com.xuecheng.framework.model.response.api.ResultCode;
 
 /**
- * @Author: mrt.
- * @Description:
- * @Date:Created in 2018/1/24 18:33.
- * @Modified By:
+ * 数据响应对象
+ *
+ * @author yuanYuan
+ * @version 1.0
+ * @date 2020/3/24
  */
-
-@ToString
 public enum CommonCode implements ResultCode {
     /**
      * 非法参数
@@ -35,18 +34,40 @@ public enum CommonCode implements ResultCode {
      * 抱歉，系统繁忙，请稍后重试
      */
     SERVER_ERROR(false, 99999, "抱歉，系统繁忙，请稍后重试！");
-    //private static ImmutableMap<Integer, CommonCode> codes ;
-    //操作是否成功
+    /**
+     * 操作是否成功
+     */
     boolean success;
-    //操作代码
+    /**
+     * 操作代码
+     */
     int code;
-    //提示信息
+    /**
+     * 提示信息
+     */
     String message;
 
-    private CommonCode(boolean success, int code, String message) {
+    /**
+     * 构造函数
+     *
+     * @param success 操作是否成功
+     * @param code    操作代码
+     * @param message 提示信息
+     */
+    CommonCode(boolean success, int code, String message) {
         this.success = success;
         this.code = code;
         this.message = message;
+    }
+
+
+    @Override
+    public String toString() {
+        return "CommonCode{" +
+                "success=" + success +
+                ", code=" + code +
+                ", message='" + message + '\'' +
+                '}';
     }
 
     @Override
@@ -63,6 +84,5 @@ public enum CommonCode implements ResultCode {
     public String message() {
         return message;
     }
-
 
 }
