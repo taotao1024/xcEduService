@@ -6,9 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.ToString;
 
 
-/**
- * Created by admin on 2018/3/5.
- */
+
 @ToString
 public enum OrderCode implements ResultCode {
     ORDER_ADD_ITEMISNULL(false,41001,"创建订单未选择课程！"),

@@ -12,6 +12,28 @@
 
     <artifactId>xc-service-manage-cms</artifactId>
     <dependencies>
+        <!-- CSE -->
+       <!-- <dependency>
+            <groupId>com.huawei.paas.cse</groupId>
+            <artifactId>cse-solution-service-engine</artifactId>
+            &lt;!&ndash; 日之包冲突,需要排除 &ndash;&gt;
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.servicecomb</groupId>
+            <artifactId>spring-boot-starter-provider</artifactId>
+            <version>1.0.0.B022</version>
+        </dependency>-->
+
         <!-- Oauth2 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

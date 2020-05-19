@@ -10,40 +10,35 @@ import com.xuecheng.framework.model.response.CommonCode;
 import org.apache.commons.lang3.StringUtils;
 import org.csource.fastdfs.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
-/**
- * @author Administrator
- * @version 1.0
- **/
 @Service
 public class FileSystemService {
 
-    @Value("${xuecheng.fastdfs.tracker_servers}")
-    String tracker_servers;
-    @Value("${xuecheng.fastdfs.connect_timeout_in_seconds}")
-    int connect_timeout_in_seconds;
-    @Value("${xuecheng.fastdfs.network_timeout_in_seconds}")
-    int network_timeout_in_seconds;
-    @Value("${xuecheng.fastdfs.charset}")
-    String charset;
-
+    /**
+     * 操作MongoDB filesystem
+     */
     @Autowired
     FileSystemRepository fileSystemRepository;
 
     /**
-     * 上传文件
+     * 上传/更新文件
+     *
+     * @param multipartFile 文件
+     * @param filetag       文件标签
+     * @param businesskey   业务key
+     * @param metadata      元信息,json格式
+     * @return
      */
     public UploadFileResult upload(MultipartFile multipartFile, String filetag, String businesskey, String metadata) {
         if (multipartFile == null) {
             ExceptionCast.cast(FileSystemCode.FS_UPLOADFILE_FILEISNULL);
         }
         //第一步：将文件上传到fastDFS中，得到一个文件id
-        String fileId = fdfs_upload(multipartFile);
+        String fileId = this.fdfs_upload(multipartFile);
         if (StringUtils.isEmpty(fileId)) {
             ExceptionCast.cast(FileSystemCode.FS_UPLOADFILE_SERVERFAIL);
         }
@@ -75,7 +70,7 @@ public class FileSystemService {
      */
     private String fdfs_upload(MultipartFile multipartFile) {
         //初始化fastDFS的环境
-        initFdfsConfig();
+        this.initFdfsConfig();
         //创建trackerClient
         TrackerClient trackerClient = new TrackerClient();
         try {
@@ -104,12 +99,9 @@ public class FileSystemService {
      * 初始化fastDFS环境
      */
     private void initFdfsConfig() {
-        //初始化tracker服务地址（多个tracker中间以半角逗号分隔）
         try {
-            ClientGlobal.initByTrackers(tracker_servers);
-            ClientGlobal.setG_charset(charset);
-            ClientGlobal.setG_network_timeout(network_timeout_in_seconds);
-            ClientGlobal.setG_connect_timeout(connect_timeout_in_seconds);
+            //加载fastdfs-client.properties配置文件
+            ClientGlobal.initByProperties("config/fastdfs-client.properties");
         } catch (Exception e) {
             e.printStackTrace();
             ExceptionCast.cast(FileSystemCode.FS_INITFDFSERROR);

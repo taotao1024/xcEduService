@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface CourseControllerApi {
     @ApiOperation(value = "添加课程")
     @ApiImplicitParam(name = "teachplan", value = "授课老师", required = true, paramType = "path", dataType = "Teachplan")
-    public ResponseResult addTeachplan(Teachplan teachplan);
+    public ResponseResult addTeachPlan(Teachplan teachplan);
 
     @ApiOperation(value = "课程计划查询")
     @ApiImplicitParam(name = "courseId", value = "课程id", required = true, paramType = "path", dataType = "string")

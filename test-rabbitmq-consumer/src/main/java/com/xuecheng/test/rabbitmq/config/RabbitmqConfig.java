@@ -6,10 +6,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author Administrator
+ * RabbitMQ消费者配置类
+ *
+ * @author yuanYuan
  * @version 1.0
- * @create 2018-06-17 20:45
- **/
+ * @date 2020/4/18
+ */
 @Configuration
 public class RabbitmqConfig {
     //队列

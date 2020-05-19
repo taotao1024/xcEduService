@@ -6,9 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.ToString;
 
 
-/**
- * Created by admin on 2018/3/5.
- */
+
 @ToString
 public enum AuthCode implements ResultCode {
     /**

@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * Created by mrt on 2018/5/21.
+ * 令牌商店
  */
 @Data
 @ToString

@@ -4,10 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author Administrator
+ * 启动类
+ *
+ * @author yuanYuan
  * @version 1.0
- * @create 2018-06-17 20:46
- **/
+ * @date 2020/4/18
+ */
 @SpringBootApplication
 public class TestRabbitmqApplication {
     public static void main(String[] args) {

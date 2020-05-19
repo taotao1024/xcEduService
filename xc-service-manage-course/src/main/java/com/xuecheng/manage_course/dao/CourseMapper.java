@@ -5,11 +5,13 @@ import com.xuecheng.framework.domain.course.CourseBase;
 import com.xuecheng.framework.domain.course.ext.CourseInfo;
 import com.xuecheng.framework.domain.course.request.CourseListRequest;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * 课程接口
  */
 @Mapper
+@Repository
 public interface CourseMapper {
 
     CourseBase findCourseBaseById(String id);

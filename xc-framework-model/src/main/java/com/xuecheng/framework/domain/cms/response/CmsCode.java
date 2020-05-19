@@ -3,9 +3,7 @@ package com.xuecheng.framework.domain.cms.response;
 import com.xuecheng.framework.model.response.api.ResultCode;
 import lombok.ToString;
 
-/**
- * Created by mrt on 2018/3/5.
- */
+
 @ToString
 public enum CmsCode implements ResultCode {
     CMS_ADDPAGE_EXISTSNAME(false,24001,"页面名称已存在！"),

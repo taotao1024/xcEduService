@@ -1,6 +1,7 @@
 package com.xuecheng.manage_course.controller;
 
 import com.xuecheng.api.course.CourseControllerApi;
+import com.xuecheng.framework.bean.UserJwt;
 import com.xuecheng.framework.domain.course.*;
 import com.xuecheng.framework.domain.course.ext.CourseInfo;
 import com.xuecheng.framework.domain.course.ext.CourseView;
@@ -19,6 +20,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
+ * 课程控制器
+ *
  * @author Administrator
  * @version 1.0
  **/
@@ -29,10 +32,17 @@ public class CourseController extends BaseController implements CourseController
     @Autowired
     CourseService courseService;
 
+    /**
+     * 添加课程
+     *
+     * @param teachplan 教学计划
+     * @return
+     * @PreAuthorize 授权注解
+     */
     @Override
     @PreAuthorize("hasAuthority('course_teachplan_add')")
     @PostMapping(value = "/teachplan/add")
-    public ResponseResult addTeachplan(@RequestBody Teachplan teachplan) {
+    public ResponseResult addTeachPlan(@RequestBody Teachplan teachplan) {
         return courseService.addTeachplan(teachplan);
     }
 
@@ -49,9 +59,9 @@ public class CourseController extends BaseController implements CourseController
     public QueryResponseResult<CourseInfo> findCourseList(@PathVariable("page") int page, @PathVariable("size") int size, CourseListRequest courseListRequest) {
         XcOauth2Util xcOauth2Util = new XcOauth2Util();
         //从jwt中获取companyId
-        XcOauth2Util.UserJwt userJwt = xcOauth2Util.getUserJwtFromHeader(super.request);
+        UserJwt userJwtFromHeader = xcOauth2Util.getUserJwtFromHeader(super.request);
         //获取companyId
-        String company_id = userJwt.getCompanyId();
+        String company_id = userJwtFromHeader.getCompanyId();
         return courseService.findCourseList(company_id, page, size, courseListRequest);
     }
 

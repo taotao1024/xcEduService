@@ -6,9 +6,7 @@ import com.xuecheng.framework.model.response.api.ResultCode;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Created by mrt on 2018/3/31.
- */
+
 @Data
 @NoArgsConstructor
 public class MediaFileResult extends ResponseResult {

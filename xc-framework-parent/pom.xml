@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- SpringBoot -->
+    <!-- 锁定SpringBoot 版本-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -57,9 +57,11 @@
              </dependency>-->
 
             <!-- SpringCloud依赖，一定要放到dependencyManagement中，起到管理版本的作用即可 -->
+            <!-- 选定Spring cloud版本 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
+                <!-- BOM bill of Materials物料清单 -->
                 <version>Finchley.SR1</version>
                 <type>pom</type>
                 <scope>import</scope>

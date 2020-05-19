@@ -12,9 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 
-/**
- * Created by admin on 2018/2/27.
- */
+
 @Data
 @ToString
 @Document(collection = "view_course")

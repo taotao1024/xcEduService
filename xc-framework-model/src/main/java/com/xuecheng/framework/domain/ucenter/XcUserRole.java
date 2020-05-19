@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by admin on 2018/3/19.
+ * 用户角色
  */
 @Data
 @ToString

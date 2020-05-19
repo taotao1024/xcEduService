@@ -68,7 +68,7 @@ public class TestFastDFS {
             String fileId = "group1/M00/00/00/rBAVnV5dUaqAJiNiAA7J3UwW8F4721.png";
             byte[] bytes = storageClient1.download_file1(fileId);
             //使用输出流保存文件
-            FileOutputStream fileOutputStream = new FileOutputStream(new File("D:/IDEA-workSpace/FastDFS/"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File("C:\\Users\\Public\\Desktop\\"));
             fileOutputStream.write(bytes);
         } catch (IOException e) {
             e.printStackTrace();

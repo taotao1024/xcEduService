@@ -16,6 +16,8 @@ spring:
         minIdle: 1
         maxWait: -1 #连接池最大等行时间 -1没有限制
 zuul:
+  #ignored-services: '*'
+  #prefix: /api
   routes:
     #课程管理模块
     manage-course: #定义路由,例如:abcd
