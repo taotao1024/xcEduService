@@ -76,9 +76,10 @@ public class AuthService {
         }
         return authToken;
     }
-    //存储到令牌到redis
 
     /**
+     * 存储到令牌到redis
+     *
      * @param access_token 用户身份令牌
      * @param content      内容就是AuthToken对象的内容
      * @param ttl          过期时间
@@ -119,7 +120,6 @@ public class AuthService {
             try {
                 authToken = JSON.parseObject(value, AuthToken.class);
             } catch (Exception e) {
-                //LOGGER.error("getUserToken from redis and execute JSON.parseObject error {}", e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -189,14 +189,20 @@ public class AuthService {
         }
 
         AuthToken authTokenResult = new AuthToken();
-        authTokenResult.setAccess_token((String) bodyMap.get("jti"));//用户身份令牌
+        authTokenResult.setAccess_token((String) bodyMap.get("jti"));//用户身份令牌 短令牌
         authTokenResult.setRefresh_token((String) bodyMap.get("refresh_token"));//刷新令牌
-        authTokenResult.setJwt_token((String) bodyMap.get("access_token"));//jwt令牌
+        authTokenResult.setJwt_token((String) bodyMap.get("access_token"));//jwt令牌 长令牌
         return authTokenResult;
     }
 
 
-    //获取httpbasic的串
+    /**
+     * 获取httpbasic的串
+     *
+     * @param clientId
+     * @param clientSecret
+     * @return
+     */
     private String getHttpBasic(String clientId, String clientSecret) {
         String string = clientId + ":" + clientSecret;
         //将串进行base64编码

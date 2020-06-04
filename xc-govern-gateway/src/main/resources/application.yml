@@ -5,6 +5,14 @@ server:
 spring:
   application:
     name: xc-govern-gateway
+management:
+  endpoints:
+    web:
+      exposure: #暴露
+        include: "endpoint" #注意这里*要加引号，暴露全部，也可以只暴露相应endpoint
+  endpoint:
+    routes:
+      enabled: true # 默认为true
   redis:
     host: ${REDIS_HOST:120.79.134.119}
     port: ${REDIS_PORT:6379}
@@ -16,45 +24,68 @@ spring:
         minIdle: 1
         maxWait: -1 #连接池最大等行时间 -1没有限制
 zuul:
-  #ignored-services: '*'
+  ignored-services: "*" #排除所有基于Eureka服务ID的路由
   #prefix: /api
   routes:
-    #课程管理模块
-    manage-course: #定义路由,例如:abcd
-      path: /course/** #网关代理路径
-      serviceId: xc-service-manage-course #微服务名称，网关会从eureka中获取该服务名称下的服务实例的地址
-      # 例子：将请求转发到http://localhost:31200/course
-      #url: http://www.baidu.com #也可指定url，此url也可以是外网地址\
+    #文件系统模块
+    file-system: #自定义路由 路由名称 保持所有路由名称唯一
+      path: /filesystem/** #网关代理路径
+      serviceid: xc-service-base-filesystem #微服务名称，网关会从eureka中获取该服务名称下的服务实例的地址
       strip-prefix: false #true：代理转发时去掉前缀(path)，false:代理转发时不去掉前缀(path)
-      sensitiveHeaders:  #默认zuul会屏蔽cookie，cookie不会传到下游服务，这里设置为空则取消默认的黑名单，如果设置了具体的头信息则不会传到下游服务
-      # ignoredHeaders: 默认为空表示不过虑任何头
-    #学习模块
-    xc-service-learning:  #路由名称，名称任意，保持所有路由名称唯一
-      path: /learning/**
-      serviceId: xc-service-learning #指定服务id，从Eureka中找到服务的ip和端口
+      sensitiveHeaders: #默认zuul会屏蔽cookie、Set-Cookie、Authorization 使其不会传到下游服务，这里设置为空 表示不拦截
+      ignoredHeaders: #空表示不过虑任何头
+    #课程管理模块
+    manage-course:
+      path: /course/**
+      #自动转发Eureka
+      serviceId: xc-service-manage-course
+      #手动设置转发
+      #url: http://www.baidu.com
       strip-prefix: false
       sensitiveHeaders:
+      ignoredHeaders:
+    #课程分类
+    manage-course-category:
+      path: /category/**
+      serviceId: xc-service-manage-course
+      strip-prefix: false
+      sensitiveHeaders:
+      ignoredHeaders:
+    #学习模块
+    xc-service-learning:
+      path: /learning/**
+      serviceId: xc-service-learning
+      strip-prefix: false
+      sensitiveHeaders:
+      ignoredHeaders:
     #CMS模块
     manage-cms:
       path: /cms/**
       serviceId: xc-service-manage-cms
       strip-prefix: false
       sensitiveHeaders:
+      ignoredHeaders:
+    #系统服务
     manage-sys:
       path: /sys/**
       serviceId: xc-service-manage-cms
       strip-prefix: false
       sensitiveHeaders:
+      ignoredHeaders:
+    #用户中心
     service-ucenter:
       path: /ucenter/**
       serviceId: xc-service-ucenter
       sensitiveHeaders:
       strip-prefix: false
+      ignoredHeaders:
+    #订单服务
     xc-service-manage-order:
       path: /order/**
       serviceId: xc-service-manage-order
       sensitiveHeaders:
       strip-prefix: false
+      ignoredHeaders:
 eureka:
   client:
     registerWithEureka: true #服务注册开关

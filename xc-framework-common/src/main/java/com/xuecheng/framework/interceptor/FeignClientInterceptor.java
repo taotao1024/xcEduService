@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 
 /**
- * 拦截器
+ * 远程调用的拦截器
  * <p>
  * 认证传递
  *
@@ -18,6 +18,11 @@ import java.util.Enumeration;
  * @date 2020/3/24
  */
 public class FeignClientInterceptor implements RequestInterceptor {
+    /**
+     * Called for every request. Add data using methods on the supplied {@link RequestTemplate}.
+     *
+     * @param requestTemplate
+     */
     @Override
     public void apply(RequestTemplate requestTemplate) {
         try {

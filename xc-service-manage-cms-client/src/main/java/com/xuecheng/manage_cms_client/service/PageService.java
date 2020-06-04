@@ -37,7 +37,10 @@ public class PageService {
     @Autowired
     CmsSiteRepository cmsSiteRepository;
 
-    //保存html页面到服务器物理路径
+    /**
+     * 保存html页面到服务器物理路径
+     * @param pageId 页面ID
+     */
     public void savePageToServerPath(String pageId) {
 
         //根据pageId查询cmsPage

@@ -4,7 +4,7 @@ server:
     context-path: /auth
 spring:
   application:
-    name: xc-service-ucenter-auth
+    name: xc-service-ucenter-auth # 认证
   redis:
     host: ${REDIS_HOST:120.79.134.119}
     port: ${REDIS_PORT:6379}
@@ -30,7 +30,7 @@ spring:
       timeBetweenEvictionRunsMillis: 60000 #配置间隔检测连接是否有效的时间（单位是毫秒）
       minEvictableIdleTimeMillis: 300000  #连接在连接池的最小生存时间（毫秒）
 auth:
-  tokenValiditySeconds: 1200  #token存储到redis的过期时间
+  tokenValiditySeconds: 3600  #token存储到redis的过期时间
   clientId: XcWebApp #客户端id
   clientSecret: XcWebApp #客户端密码
   cookieDomain: xuecheng.com #域名

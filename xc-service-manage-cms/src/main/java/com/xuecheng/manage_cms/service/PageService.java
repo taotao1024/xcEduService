@@ -191,22 +191,26 @@ public class PageService {
         return null;
     }
 
-    //静态化方法
+    /**
+     * 静态化方法
+     * @param pageId 页面ID
+     * @return
+     */
     public String getPageHtml(String pageId) {
         //根据pageId获取数据模型
-        Map model = getModelByPageId(pageId);
+        Map model = this.getModelByPageId(pageId);
         if (model == null) {
             // 根据页面的数据url获取不到数据
             ExceptionCast.cast(CmsCode.CMS_GENERATEHTML_DATAISNULL);
         }
         //页面的模板信息
-        String content = getTemplateByPageId(pageId);
+        String content = this.getTemplateByPageId(pageId);
         if (content == null) {
             //页面模板为空
             ExceptionCast.cast(CmsCode.CMS_GENERATEHTML_TEMPLATEISNULL);
         }
         //执行静态化
-        String html = generateHtml(content, model);
+        String html = this.generateHtml(content, model);
         if (StringUtils.isEmpty(html)) {
             //生成的静态html为空
             ExceptionCast.cast(CmsCode.CMS_GENERATEHTML_HTMLISNULL);
@@ -214,7 +218,11 @@ public class PageService {
         return html;
     }
 
-    //根据dateURl获取数据模型(数据)
+    /**
+     * 根据dateURl获取数据模型(数据)
+     * @param pageId 页面id
+     * @return
+     */
     public Map getModelByPageId(String pageId) {
         //取出页面信息
         CmsPage cmsPage = this.getById(pageId);
@@ -235,7 +243,11 @@ public class PageService {
         return body;
     }
 
-    //获取页面的模板信息(模板)
+    /**
+     * 获取页面的模板信息(模板)
+     * @param pageId 页面id
+     * @return
+     */
     private String getTemplateByPageId(String pageId) {
         //取出页面信息
         CmsPage cmsPage = this.getById(pageId);
@@ -272,7 +284,12 @@ public class PageService {
         return null;
     }
 
-    //页面静态化(模板+数据)
+    /**
+     * 页面静态化(模板+数据)
+     * @param templateContent 模板
+     * @param model 数据
+     * @return
+     */
     private String generateHtml(String templateContent, Map model) {
         //创建配置类
         Configuration configuration = new Configuration(Configuration.getVersion());
@@ -305,14 +322,19 @@ public class PageService {
         //执行页面静态化
         String pageHtml = this.getPageHtml(pageId);
         //存储GridFS
-        CmsPage cmsPage = saveHtml(pageId, pageHtml);
+        CmsPage cmsPage = this.saveHtml(pageId, pageHtml);
         //向MQ发布消息
-        sendPostPage(pageId);
+        this.sendPostPage(pageId);
         //操作成功
         return new ResponseResult(CommonCode.SUCCESS);
     }
 
-    //存储到GridFS
+    /**
+     * 存储到GridFS
+     * @param pageId 页面di
+     * @param htmlContent 页面内容
+     * @return
+     */
     private CmsPage saveHtml(String pageId, String htmlContent) {
         ObjectId objectId = null;
         //获取页面信息

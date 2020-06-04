@@ -13,11 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.awt.color.ProfileDataException;
 
-/**
- * @author Administrator
- * @version 1.0
- * @create 2018-09-12 17:24
- **/
+
 @RestController
 @RequestMapping("/cms/page")
 public class CmsPageController implements CmsPageControllerApi {

@@ -100,7 +100,13 @@ public class MediaUploadService {
 
     }
 
-    //上传分块
+    /**
+     * 上传分块
+     * @param file 文件
+     * @param fileMd5 md5加密
+     * @param chunk 块
+     * @return
+     */
     public ResponseResult uploadChunk(MultipartFile file, String fileMd5, Integer chunk) {
         //检查分块目录，如果不存在则要自动创建
         //得到分块目录
@@ -138,7 +144,15 @@ public class MediaUploadService {
 
     }
 
-    //合并文件
+    /**
+     * 合并文件
+     * @param fileMd5 md5
+     * @param fileName 文件名称
+     * @param fileSize 文件大小
+     * @param mimetype 类型
+     * @param fileExt 文件描述
+     * @return
+     */
     public ResponseResult mergeChunks(String fileMd5, String fileName, Long fileSize, String mimetype, String fileExt) {
 
         //1、合并所有分块
@@ -228,7 +242,6 @@ public class MediaUploadService {
             FileInputStream inputStream = new FileInputStream(mergeFile);
             //得到文件的md5
             String md5Hex = DigestUtils.md5Hex(inputStream);
-
             //和传入的md5比较
             if (md5.equalsIgnoreCase(md5Hex)) {
                 return true;

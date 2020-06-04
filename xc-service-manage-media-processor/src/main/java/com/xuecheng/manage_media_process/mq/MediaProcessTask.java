@@ -31,7 +31,10 @@ public class MediaProcessTask {
     @Autowired
     MediaFileRepository mediaFileRepository;
 
-    //接收视频处理消息进行视频处理
+    /**
+     * 接收视频处理消息进行视频处理
+     * @param msg MQ通知内容
+     */
     @RabbitListener(queues = "${xc-service-manage-media.mq.queue-media-video-processor}", containerFactory = "customContainerFactory")
     public void receiveMediaProcessTask(String msg) {
         //1、解析消息内容，得到mediaId
@@ -79,7 +82,6 @@ public class MediaProcessTask {
             mediaFileRepository.save(mediaFile);
             return;
         }
-
         //4、将mp4生成m3u8和ts文件
         //String ffmpeg_path, String video_path, String m3u8_name,String m3u8folder_path
         //mp4视频文件路径

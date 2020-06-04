@@ -68,7 +68,13 @@ public class AuthService {
      */
     public long getExpire(String accessToken) {
         String key = "user_token:" + accessToken;
-        long result = stringRedisTemplate.getExpire(key, TimeUnit.SECONDS);
+        long result = -1;
+        try {
+            // result = stringRedisTemplate.getExpire(key, TimeUnit.SECONDS);
+            result = stringRedisTemplate.getExpire(key);
+        } catch (Exception e) {
+            return result;
+        }
         return result;
     }
 }

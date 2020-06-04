@@ -1,6 +1,7 @@
 package com.xuecheng.govern.gateway.filter;
 
 import com.alibaba.fastjson.JSON;
+
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
@@ -17,7 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 身份认证校验（PreZuul）
+ * 前置过滤器
+ * <p>
  * 网关只负责拦截认证,判断是否与权利访问.
  *
  * @author yuanYuan
@@ -26,7 +28,6 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class LoginFilter extends ZuulFilter {
     private static final Logger LOGGER = LoggerFactory.getLogger(ZuulFilter.class);
-    private static int preCount = 0;
 
     @Autowired
     AuthService authService;
@@ -75,9 +76,6 @@ public class LoginFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
 
-        preCount = ++preCount;
-        System.out.println("preZuul调用次数：" + preCount);
-
         //请求体
         RequestContext requestContext = RequestContext.getCurrentContext();
         HttpServletRequest request = requestContext.getRequest();
@@ -102,7 +100,7 @@ public class LoginFilter extends ZuulFilter {
         String jwt = authService.getJwtFromHeader(request);
         if (StringUtils.isEmpty(jwt)) {
             this.accessDenied(requestContext);
-            LOGGER.info("Java Web Token is null");
+            LOGGER.info("JWT令牌为空");
             return null;
         }
         return null;

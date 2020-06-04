@@ -12,24 +12,35 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * Oauth2拦截配置
+ * 用户凭证、安全角色信息配置
  */
 @Configuration
 @EnableWebSecurity
 @Order(-1)
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    /**
+     * Web安全配置
+     *
+     * @param web
+     * @throws Exception
+     */
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/userlogin", "/userlogout", "/userjwt");
-
+        web.ignoring()//忽略
+                .antMatchers("/userlogin", "/userlogout", "/userjwt");//匹配器
     }
 
+    /**
+     * 认证处理
+     *
+     * @return
+     * @throws Exception
+     */
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
-        AuthenticationManager manager = super.authenticationManagerBean();
-        return manager;
+        return super.authenticationManagerBean();
     }
 
     /**
@@ -40,13 +51,23 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * 跨站点请求伪造，默认激活
+     *
+     * @param http
+     * @throws Exception
+     */
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .httpBasic().and()
+        http.csrf()
+                .disable()
+                .httpBasic()
+                .and()
                 .formLogin()
                 .and()
-                .authorizeRequests().anyRequest().authenticated();
+                .authorizeRequests()
+                .anyRequest()
+                .authenticated();
 
     }
 }

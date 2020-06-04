@@ -3,6 +3,7 @@ package com.xuecheng.filesystem.controller;
 import com.xuecheng.api.filesystem.FileSystemControllerApi;
 import com.xuecheng.filesystem.service.FileSystemService;
 import com.xuecheng.framework.domain.filesystem.response.UploadFileResult;
+import com.xuecheng.framework.model.response.CommonCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,12 @@ public class FileSystemController implements FileSystemControllerApi {
                                    @RequestParam(required = true) String filetag,
                                    @RequestParam(required = false) String businesskey,
                                    @RequestParam(required = false) String metadata) {
-        System.out.println("服务器上传文件ing ......");
+        String filename = multipartFile.getOriginalFilename();
+        System.out.println(filename + "文件正在上传 ......");
+        //文件检测
+        if (!filename.contains("jpg") || !filename.contains("png")) {
+            return new UploadFileResult(CommonCode.FAIL, null);
+        }
         return fileSystemService.upload(multipartFile, filetag, businesskey, metadata);
     }
 }

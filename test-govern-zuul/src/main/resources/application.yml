@@ -11,6 +11,14 @@ eureka:
 spring:
   application:
     name: test-govern-zuul
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" #注意这里*要加引号，暴露全部，也可以只暴露相应endpoint
+  endpoint:
+    routes:
+      enabled: true # 默认为true，可以省略
 zuul:
   prefix: /api
   routes:
