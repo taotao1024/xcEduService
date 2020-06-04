@@ -8,6 +8,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  * BaseController
+ *
+ * @author yuanYuan
+ * @version 1.0
+ * @date 2020/3/24
  */
 public class BaseController {
     protected HttpServletRequest request;

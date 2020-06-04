@@ -2,13 +2,11 @@ package com.xuecheng.framework.domain.media.response;
 
 import com.xuecheng.framework.domain.media.MediaFile;
 import com.xuecheng.framework.model.response.ResponseResult;
-import com.xuecheng.framework.model.response.ResultCode;
+import com.xuecheng.framework.model.response.api.ResultCode;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Created by mrt on 2018/3/31.
- */
+
 @Data
 @NoArgsConstructor
 public class MediaFileResult extends ResponseResult {

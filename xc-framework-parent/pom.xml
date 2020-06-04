@@ -3,15 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <!-- 锁定SpringBoot 版本-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.1.RELEASE</version>
     </parent>
+
+    <!-- Description -->
     <groupId>com.xuecheng</groupId>
     <artifactId>xc-framework-parent</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
+    <!-- Properties -->
     <properties>
         <java.version>1.8</java.version>
         <tomcat.version>8.5.28</tomcat.version>
@@ -21,8 +27,6 @@
         <mybatis.version>3.4.5</mybatis.version>
         <druid.version>1.1.6</druid.version>
         <mysql-connector-java.version>5.1.45</mysql-connector-java.version>
-
-
         <commons-io.version>2.6</commons-io.version>
         <org.apache.commons.io.version>1.3.2</org.apache.commons.io.version>
         <commons-fileupload.version>1.3.3</commons-fileupload.version>
@@ -37,129 +41,162 @@
         <mysql-connector-java.version>5.1.40</mysql-connector-java.version>
         <elasticsearch.version>6.2.1</elasticsearch.version>
         <guava.version>24.0-jre</guava.version>
+        <cse.version>2.3.20</cse.version>
     </properties>
+
     <!--test-->
     <dependencyManagement>
         <dependencies>
+            <!-- 云服务引擎 CSE Cloud Service Engine -->
+            <!-- <dependency>
+                 <groupId>com.huawei.paas.cse</groupId>
+                 <artifactId>cse-dependency</artifactId>
+                 <version>${cse.version}</version>
+                 <type>pom</type>
+                 <scope>import</scope>
+             </dependency>-->
+
+            <!-- SpringCloud依赖，一定要放到dependencyManagement中，起到管理版本的作用即可 -->
+            <!-- 选定Spring cloud版本 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
+                <!-- BOM bill of Materials物料清单 -->
                 <version>Finchley.SR1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- Mysql驱动 -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql-connector-java.version}</version>
             </dependency>
+            <!-- SpringBoot启动项 -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis-spring-boot.version}</version>
             </dependency>
+            <!-- Mysql分页插件 -->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>1.2.4</version>
             </dependency>
+            <!-- Mysql连接池 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
             </dependency>
-
+            <!-- HTTP -->
             <dependency>
                 <groupId>com.squareup.okhttp3</groupId>
                 <artifactId>okhttp</artifactId>
                 <version>${okhttp.version}</version>
             </dependency>
+            <!-- 远程调取 -->
             <dependency>
                 <groupId>com.netflix.feign</groupId>
                 <artifactId>feign-okhttp</artifactId>
                 <version>${feign-okhttp.version}</version>
             </dependency>
+            <!-- IO -->
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
             </dependency>
+            <!-- Apache工具包 -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${org.apache.commons.io.version}</version>
             </dependency>
+            <!-- 文件上传插件 -->
             <dependency>
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
                 <version>${commons-fileupload.version}</version>
             </dependency>
+            <!-- Apache开源组织提供的用于摘要运算、编码解码的包 -->
+            <!-- 见的编码解码工具Base64、MD5、Hex、SHA1、DES等 -->
             <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>${commons-codec.version}</version>
             </dependency>
+            <!-- Apache工具包 -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
             </dependency>
+            <!-- Lombok插件 -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
+            <!-- Swagger插件 -->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
                 <version>${springfox-swagger.version}</version>
             </dependency>
+            <!-- Swaggger-UI -->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${springfox-swagger.version}</version>
             </dependency>
+            <!-- FastJSON -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
+            <!-- FastDFS -->
             <dependency>
                 <groupId>net.oschina.zcx7878</groupId>
                 <artifactId>fastdfs-client-java</artifactId>
                 <version>${fastdfs-client-java.version}</version>
             </dependency>
-
+            <!-- ElasticSearch高版本 -->
             <dependency>
                 <groupId>org.elasticsearch.client</groupId>
                 <artifactId>elasticsearch-rest-high-level-client</artifactId>
                 <version>${elasticsearch.version}</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch -->
+            <!-- ElasticSearch低版本 -->
             <dependency>
                 <groupId>org.elasticsearch</groupId>
                 <artifactId>elasticsearch</artifactId>
                 <version>${elasticsearch.version}</version>
             </dependency>
+            <!-- Google 工具包 -->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
+
+    <!-- 构建 -->
     <build>
         <finalName>${project.artifactId}</finalName>
+        <!-- 插件 -->
         <plugins>
-           <!-- &lt;!&ndash; 资源文件拷贝插件 &ndash;&gt;
+            <!-- 资源文件拷贝插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <configuration>
                     <encoding>UTF-8</encoding>
                 </configuration>
-            </plugin>-->
+            </plugin>
             <!-- java编译插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -170,11 +207,26 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+            <!-- maven打包插件 -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 跳过测试 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
             </plugin>
         </plugins>
     </build>
+
 
 </project>

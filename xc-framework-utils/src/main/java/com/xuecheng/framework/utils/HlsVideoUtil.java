@@ -4,10 +4,17 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * 此文件用于视频文件处理，步骤如下：
+ * <p>
  * 1、生成mp4
+ * <p>
  * 2、生成m3u8
+ *
+ * @author yuanYuan
+ * @version 1.0
+ * @date 2020/4/10
  */
 public class HlsVideoUtil extends VideoUtil {
 
@@ -138,17 +145,5 @@ public class HlsVideoUtil extends VideoUtil {
         }
         return null;
 
-    }
-
-
-    public static void main(String[] args) throws IOException {
-        String ffmpeg_path = "C:/Program Files/Java/ffmpeg-20180227-fa0c9d6-win64-static/bin//ffmpeg.exe";//ffmpeg的安装位置
-        String video_path = "D:\\ffmpeg_server\\templete.mp4";
-        String m3u8_name = "templete.m3u8";
-        String m3u8_path = "D:\\ffmpeg_server\\develop\\video\\hls\\";
-        HlsVideoUtil videoUtil = new HlsVideoUtil(ffmpeg_path, video_path, m3u8_name, m3u8_path);
-        String s = videoUtil.generateM3u8();
-        System.out.println(s);
-        System.out.println(videoUtil.get_ts_list());
     }
 }

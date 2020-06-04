@@ -4,7 +4,12 @@ package com.xuecheng.manage_cms_client.dao;
 import com.xuecheng.framework.domain.cms.CmsPage;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-//页面
+import org.springframework.stereotype.Repository;
+
+/**
+ * 页面信息
+ */
+@Repository
 public interface CmsPageRepository extends MongoRepository<CmsPage, String> {
     //根据页面名称查询
     CmsPage findByPageName(String pageName);

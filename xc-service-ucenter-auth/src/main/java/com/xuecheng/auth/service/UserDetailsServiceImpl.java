@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 用户名密码认证
+ * 密码模式授权
  * Security 自动调用的方法
  */
 @Service
@@ -58,9 +58,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             return null;
         }
 
-        //权限先用静态的
-        //userExt.setPermissions(new ArrayList<XcMenu>());
-        //用户权限，这里暂时使用静态数据，最终会从数据库读取
+        //权限
 
         //取出正确密码（hash值）
         String password = userExt.getPassword();

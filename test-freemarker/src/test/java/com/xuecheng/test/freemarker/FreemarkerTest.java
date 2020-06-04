@@ -48,6 +48,7 @@ public class FreemarkerTest {
         //输出流
         FileOutputStream fileOutputStream = new FileOutputStream(new File("d:/freemarker/test1.html"));
         int copy = IOUtils.copy(inputStream, fileOutputStream);
+        System.out.println("静态化成功");
     }
 
     //基于模板字符串生成静态化文件

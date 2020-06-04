@@ -58,6 +58,11 @@ public class AuthController implements AuthControllerApi {
     @Autowired
     AuthService authService;
 
+    /**
+     * 登陆
+     * @param loginRequest 登陆信息 用户名、密码、验证码
+     * @return
+     */
     @Override
     @PostMapping("/userlogin")
     public LoginResult login(LoginRequest loginRequest) {
@@ -98,6 +103,27 @@ public class AuthController implements AuthControllerApi {
     }
 
     /**
+     * 通过jti获取令牌
+     * @return
+     */
+    @Override
+    @GetMapping("/userjwt")
+    public JwtResult userJwt() {
+        //获取cookie中的令牌
+        String uid = this.getTokenFormCookie();
+        if (null == uid) {
+            return new JwtResult(CommonCode.FAIL, null);
+        }
+        //根据令牌从redis查询jwt
+        AuthToken authToken = authService.getUserToken(uid);
+        if (null == authToken) {
+            return new JwtResult(CommonCode.FAIL, null);
+        }
+        return new JwtResult(CommonCode.SUCCESS, authToken.getJwt_token());
+    }
+
+
+    /**
      * 将令牌存储到cookie
      *
      * @param token 令牌
@@ -116,22 +142,6 @@ public class AuthController implements AuthControllerApi {
     private void clearCookie(String token) {
         HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
         CookieUtil.addCookie(response, cookieDomain, "/", "uid", token, 0, false);
-    }
-
-    @Override
-    @GetMapping("/userjwt")
-    public JwtResult userJwt() {
-        //获取cookie中的令牌
-        String uid = this.getTokenFormCookie();
-        if (null == uid) {
-            return new JwtResult(CommonCode.FAIL, null);
-        }
-        //根据令牌从redis查询jwt
-        AuthToken authToken = authService.getUserToken(uid);
-        if (null == authToken) {
-            return new JwtResult(CommonCode.FAIL, null);
-        }
-        return new JwtResult(CommonCode.SUCCESS, authToken.getJwt_token());
     }
 
     /**

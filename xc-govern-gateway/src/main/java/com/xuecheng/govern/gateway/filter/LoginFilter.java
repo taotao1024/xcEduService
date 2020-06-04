@@ -1,6 +1,7 @@
 package com.xuecheng.govern.gateway.filter;
 
 import com.alibaba.fastjson.JSON;
+
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
@@ -8,6 +9,8 @@ import com.xuecheng.framework.model.response.CommonCode;
 import com.xuecheng.framework.model.response.ResponseResult;
 import com.xuecheng.govern.gateway.service.AuthService;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,14 +18,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 身份校验过虑器
+ * 前置过滤器
+ * <p>
+ * 网关只负责拦截认证,判断是否与权利访问.
  *
- * @author Administrator
+ * @author yuanYuan
  * @version 1.0
  **/
-
 @Component
 public class LoginFilter extends ZuulFilter {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ZuulFilter.class);
 
     @Autowired
     AuthService authService;
@@ -34,7 +39,7 @@ public class LoginFilter extends ZuulFilter {
      * post：在routing和errror过滤器之后调用
      * error：处理请求时发生错误调用
      *
-     * @return String
+     * @return String(过滤类型)
      */
     @Override
     public String filterType() {
@@ -44,7 +49,7 @@ public class LoginFilter extends ZuulFilter {
     /**
      * 过虑器序号，越小越被优先执行
      *
-     * @return int
+     * @return int(多个过滤器的有限期)
      */
     @Override
     public int filterOrder() {
@@ -54,50 +59,48 @@ public class LoginFilter extends ZuulFilter {
     /**
      * 返回true表示要执行此过虑器
      *
-     * @return boolean
+     * @return boolean(是否执行)
      */
     @Override
     public boolean shouldFilter() {
         return true;
     }
 
-    //测试的需求：过虑所有请求，判断头部信息是否有Authorization，如果没有则拒绝访问，否则转发到微服务。
-
     /**
-     * 过虑器的内容
+     * 过虑器逻辑
+     * 过虑所有请求，判断头部信息是否有Authorization，如果没有则拒绝访问，否则转发到微服务。
      *
      * @return Object
      * @throws ZuulException 网关异常
      */
     @Override
     public Object run() throws ZuulException {
+
+        //请求体
         RequestContext requestContext = RequestContext.getCurrentContext();
-        //得到request
         HttpServletRequest request = requestContext.getRequest();
-        //得到response
-        HttpServletResponse response = requestContext.getResponse();
 
-        //1.取cookie中的身份令牌
-        String tokenFromCookie = authService.getTokenFromCookie(request);
-        if (StringUtils.isEmpty(tokenFromCookie)) {
-            //拒绝访问
-            this.access_denied();
+        //1.取cookie中的身份令牌,证明本地令牌存在
+        String token = authService.getTokenFromCookie(request);
+        if (StringUtils.isEmpty(token)) {
+            this.accessDenied(requestContext);
+            LOGGER.info("本地Cookie中身份令牌不存在");
             return null;
         }
 
-        //2.从header中取jwt
-        String jwtFromHeader = authService.getJwtFromHeader(request);
-        if (StringUtils.isEmpty(jwtFromHeader)) {
-            //拒绝访问
-            this.access_denied();
-            return null;
-        }
-
-        //3.从redis取出jwt的过期时间
-        long expire = authService.getExpire(tokenFromCookie);
+        //2.从redis取出jwt的过期时间,证明服务器令牌存在
+        long expire = authService.getExpire(token);
         if (expire < 0) {
-            //拒绝访问
-            this.access_denied();
+            this.accessDenied(requestContext);
+            LOGGER.info("Redis服务器身份令牌过期");
+            return null;
+        }
+
+        //3.从header中取jwt,证明存在JWT令牌
+        String jwt = authService.getJwtFromHeader(request);
+        if (StringUtils.isEmpty(jwt)) {
+            this.accessDenied(requestContext);
+            LOGGER.info("JWT令牌为空");
             return null;
         }
         return null;
@@ -105,10 +108,9 @@ public class LoginFilter extends ZuulFilter {
 
 
     /**
-     * 拒绝访问
+     * 访问被拒绝,自动以相应信息
      */
-    private void access_denied() {
-        RequestContext requestContext = RequestContext.getCurrentContext();
+    private void accessDenied(RequestContext requestContext) {
         //得到response
         HttpServletResponse response = requestContext.getResponse();
         //拒绝访问
@@ -119,8 +121,9 @@ public class LoginFilter extends ZuulFilter {
         ResponseResult responseResult = new ResponseResult(CommonCode.UNAUTHENTICATED);
         //转成json
         String jsonString = JSON.toJSONString(responseResult);
+        //设置响应信息
         requestContext.setResponseBody(jsonString);
-        //转成json，设置contentType
+        //设置contentType
         response.setContentType("application/json;charset=utf-8");
     }
 

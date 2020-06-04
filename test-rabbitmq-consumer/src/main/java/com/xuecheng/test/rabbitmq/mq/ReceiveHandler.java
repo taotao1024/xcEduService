@@ -7,10 +7,12 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 /**
- * @author Administrator
+ * 测试监听
+ *
+ * @author yuanYuan
  * @version 1.0
- * @create 2018-06-17 21:21
- **/
+ * @date 2020/4/18
+ */
 @Component
 public class ReceiveHandler {
     //@RabbitListener:监听某一个队列

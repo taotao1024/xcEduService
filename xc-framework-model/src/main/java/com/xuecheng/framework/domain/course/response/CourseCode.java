@@ -1,14 +1,12 @@
 package com.xuecheng.framework.domain.course.response;
 
 import com.google.common.collect.ImmutableMap;
-import com.xuecheng.framework.model.response.ResultCode;
+import com.xuecheng.framework.model.response.api.ResultCode;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.ToString;
 
 
-/**
- * Created by admin on 2018/3/5.
- */
+
 @ToString
 public enum CourseCode implements ResultCode {
 

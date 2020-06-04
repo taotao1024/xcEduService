@@ -13,6 +13,7 @@
     <artifactId>xc-service-manage-media-processor</artifactId>
     <dependencies>
 
+        <!-- XC Start -->
         <dependency>
             <groupId>com.xuecheng</groupId>
             <artifactId>xc-service-api</artifactId>
@@ -33,19 +34,24 @@
             <artifactId>xc-framework-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!-- XC end -->
 
+        <!-- MongoDB -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
+        <!-- AMQP -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+        <!-- HTTP -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
         </dependency>
+        <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

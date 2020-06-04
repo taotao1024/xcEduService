@@ -4,7 +4,7 @@ import com.xuecheng.framework.domain.media.MediaFile;
 import com.xuecheng.framework.domain.media.request.QueryMediaFileRequest;
 import com.xuecheng.framework.model.response.CommonCode;
 import com.xuecheng.framework.model.response.QueryResponseResult;
-import com.xuecheng.framework.model.response.QueryResult;
+import com.xuecheng.framework.model.response.bean.QueryResult;
 import com.xuecheng.manage_media.dao.MediaFileRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

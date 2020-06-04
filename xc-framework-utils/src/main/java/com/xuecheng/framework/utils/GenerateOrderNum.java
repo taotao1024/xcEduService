@@ -4,7 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by mrt on 2018/3/27.
+ * 生成订单id
+ *
+ * @author yuanYuan
+ * @version 1.0
+ * @date 2020/4/10
  */
 public class GenerateOrderNum {
     /**
@@ -18,7 +22,7 @@ public class GenerateOrderNum {
     /**
      * 每毫秒生成订单号数量最大值
      */
-    private int maxPerMSECSize=1000;
+    private int maxPerMSECSize = 1000;
 
     /**
      *
@@ -26,6 +30,7 @@ public class GenerateOrderNum {
 
     /**
      * 生成非重复订单号，理论上限1毫秒1000个，可扩展
+     *
      * @param tname 测试用
      */
     public synchronized void generate(String tname) {
@@ -40,40 +45,14 @@ public class GenerateOrderNum {
                     orderNumCount = 0L;
                 }
                 //组装订单号
-                String countStr=maxPerMSECSize +orderNumCount+"";
-                finOrderNum=nowLong+countStr.substring(1);
+                String countStr = maxPerMSECSize + orderNumCount + "";
+                finOrderNum = nowLong + countStr.substring(1);
                 orderNumCount++;
-                System.out.println(finOrderNum + "--" + Thread.currentThread().getName() + "::" + tname );
+                System.out.println(finOrderNum + "--" + Thread.currentThread().getName() + "::" + tname);
                 // Thread.sleep(1000);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        // 测试多线程调用订单号生成工具
-        /*try {
-            for (int i = 0; i < 200; i++) {
-                Thread t1 = new Thread(new Runnable() {
-                    public void run() {
-                        GenerateOrderNum generateOrderNum = new GenerateOrderNum();
-                        generateOrderNum.generate("a");
-                    }
-                }, "at" + i);
-                t1.start();
-
-                Thread t2 = new Thread(new Runnable() {
-                    public void run() {
-                        GenerateOrderNum generateOrderNum = new GenerateOrderNum();
-                        generateOrderNum.generate("b");
-                    }
-                }, "bt" + i);
-                t2.start();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-        System.out.println(System.currentTimeMillis());
     }
 }

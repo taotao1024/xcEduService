@@ -9,9 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 
 /**
- * 拦截器
+ * 远程调用的拦截器
+ * <p>
+ * 认证传递
+ *
+ * @author yuanYuan
+ * @version 1.0
+ * @date 2020/3/24
  */
 public class FeignClientInterceptor implements RequestInterceptor {
+    /**
+     * Called for every request. Add data using methods on the supplied {@link RequestTemplate}.
+     *
+     * @param requestTemplate
+     */
     @Override
     public void apply(RequestTemplate requestTemplate) {
         try {
@@ -25,7 +36,7 @@ public class FeignClientInterceptor implements RequestInterceptor {
                     while (headerNames.hasMoreElements()) {
                         String name = headerNames.nextElement();
                         String values = request.getHeader(name);
-                        if (name.equals("authorization")) {
+                        if ("authorization".equals(name)) {
                             System.out.println("name=" + name + "values=" + values);
                             //将header向下传
                             requestTemplate.header(name, values);

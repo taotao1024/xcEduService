@@ -1,23 +1,32 @@
 package com.xuecheng.framework.domain.filesystem.response;
 
 import com.google.common.collect.ImmutableMap;
-import com.xuecheng.framework.model.response.ResultCode;
+import com.xuecheng.framework.model.response.api.ResultCode;
 import lombok.ToString;
 
 
-/**
- * Created by admin on 2018/3/5.
- */
 @ToString
 public enum FileSystemCode implements ResultCode {
+    /**
+     * 上传文件为空
+     */
     FS_UPLOADFILE_FILEISNULL(false, 25001, "上传文件为空！"),
+    /**
+     * 业务Id为空
+     */
     FS_UPLOADFILE_BUSINESSISNULL(false, 25002, "业务Id为空！"),
+    /**
+     * 上传文件服务器失败
+     */
     FS_UPLOADFILE_SERVERFAIL(false, 25003, "上传文件服务器失败！"),
     FS_DELETEFILE_NOTEXISTS(false, 25004, "删除的文件不存在！"),
     FS_DELETEFILE_DBFAIL(false, 25005, "删除文件信息失败！"),
     FS_DELETEFILE_SERVERFAIL(false, 25006, "删除文件失败！"),
     FS_UPLOADFILE_METAERROR(false, 25007, "上传文件的元信息请使用json格式！"),
     FS_UPLOADFILE_USERISNULL(false, 25008, "上传文件用户为空！"),
+    /**
+     * 初始化fastDFS环境出错
+     */
     FS_INITFDFSERROR(false, 25009, "初始化fastDFS环境出错");
 
     //操作代码

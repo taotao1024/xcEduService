@@ -13,7 +13,7 @@ public class TestBCrypt {
     @Test
     public void testPasswrodEncoder() {
         //原始密码
-        String password = "asdf";
+        String password = "testBCrypt";
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         //使用BCrypt加密，每次加密使用一个随机盐
         for (int i = 0; i < 10; i++) {
@@ -25,6 +25,5 @@ public class TestBCrypt {
             boolean matches = bCryptPasswordEncoder.matches(password, encode);
             System.out.println("校验通过 ： " + matches);
         }
-
     }
 }

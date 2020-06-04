@@ -11,7 +11,10 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 认证
+ * 认证服务层
+ *
+ * @author yuanYuan
+ * @version 1.0
  **/
 @Service
 public class AuthService {
@@ -23,19 +26,21 @@ public class AuthService {
      * 从请求头中取出jwt令牌
      *
      * @param request HttpServletRequest
-     * @return
+     * @return "Authorization":"Bearer abc"中的abc,其中abc为令牌串
      */
     public String getJwtFromHeader(HttpServletRequest request) {
+        String result;
+        String authorizationValueHead = "Bearer ";
         //取出头信息
         String authorization = request.getHeader("Authorization");
         if (StringUtils.isEmpty(authorization)) {
             return null;
         }
-        if (!authorization.startsWith("Bearer ")) {
+        if (!authorization.startsWith(authorizationValueHead)) {
             return null;
         }
         //取到jwt令牌
-        String result = authorization.substring(7);
+        result = authorization.substring(7);
         return result;
     }
 
@@ -44,7 +49,7 @@ public class AuthService {
      * 从cookie取出token
      *
      * @param request HttpServletRequest
-     * @return token串
+     * @return 令牌串 uid.value
      */
     public String getTokenFromCookie(HttpServletRequest request) {
         Map<String, String> cookieMap = CookieUtil.readCookie(request, "uid");
@@ -58,12 +63,18 @@ public class AuthService {
     /**
      * 查询令牌的有效期
      *
-     * @param access_token Token串
+     * @param accessToken 访问令牌
      * @return
      */
-    public long getExpire(String access_token) {
-        String key = "user_token:" + access_token;
-        Long result = stringRedisTemplate.getExpire(key, TimeUnit.SECONDS);
+    public long getExpire(String accessToken) {
+        String key = "user_token:" + accessToken;
+        long result = -1;
+        try {
+            // result = stringRedisTemplate.getExpire(key, TimeUnit.SECONDS);
+            result = stringRedisTemplate.getExpire(key);
+        } catch (Exception e) {
+            return result;
+        }
         return result;
     }
 }

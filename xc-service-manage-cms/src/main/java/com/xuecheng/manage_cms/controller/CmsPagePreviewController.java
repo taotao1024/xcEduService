@@ -14,11 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.ServletOutputStream;
 import java.io.IOException;
 
-/**
- * @author Administrator
- * @version 1.0
- * @create 2018-09-15 16:20
- **/
+
 @Controller
 @Api(value = "CMS静态化展示页面", description = "CMS静态化展示:提供浏览静态化")
 public class CmsPagePreviewController extends BaseController {

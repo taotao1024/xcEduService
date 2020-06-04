@@ -6,11 +6,12 @@ spring:
 eureka:
   client: #客户端
     registerWithEureka: true #服务注册，是否将自己注册到Eureka服务中
-    fetchRegistry: true #服务发现，是否从Eureka中获取注册信息
+    fetchRegistry: true #服务发现，是否从本地缓存中获取注册信息
     serviceUrl: #Eureka客户端与Eureka服务端的交互地址，高可用状态配置对方的地址，单机状态配置自己（如果不配置则默认本机8761端口）
       defaultZone: ${EUREKA_SERVER:http://eureka02:50102/eureka/}
   server: #服务端
     enable-self-preservation: false #是否开启自我保护模式 开发环境建议关闭
     eviction-interval-timer-in-ms: 60000 #服务注册表清理间隔（单位毫秒，默认是60*1000）
+    #wait-time-in-ms-when-sync-empty: 5 #在服务器接收请求之前，等待初试时间。
   instance:
     hostname: ${EUREKA_DOMAIN:eureka01}

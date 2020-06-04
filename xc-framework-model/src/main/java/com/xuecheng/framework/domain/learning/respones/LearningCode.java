@@ -1,9 +1,6 @@
 package com.xuecheng.framework.domain.learning.respones;
 
-import com.google.common.collect.ImmutableMap;
-import com.xuecheng.framework.domain.media.response.MediaCode;
-import com.xuecheng.framework.model.response.ResultCode;
-import io.swagger.annotations.ApiModelProperty;
+import com.xuecheng.framework.model.response.api.ResultCode;
 
 public enum LearningCode implements ResultCode {
     /**

@@ -13,44 +13,77 @@
     <artifactId>xc-service-base-filesystem</artifactId>
 
     <dependencies>
+        <!-- api -->
         <dependency>
             <groupId>com.xuecheng</groupId>
             <artifactId>xc-service-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!-- 实体 -->
         <dependency>
             <groupId>com.xuecheng</groupId>
             <artifactId>xc-framework-model</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!-- 通用组建 -->
         <dependency>
             <groupId>com.xuecheng</groupId>
             <artifactId>xc-framework-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!-- web-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!-- FastDFS -->
         <dependency>
             <groupId>net.oschina.zcx7878</groupId>
             <artifactId>fastdfs-client-java</artifactId>
         </dependency>
-
+        <!-- 测试 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- io工具 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-io</artifactId>
         </dependency>
-
+        <!-- MongoDB -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
+        <!-- 导入Eureka客户端的依赖 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
     </dependencies>
-
+    <!-- 构建 -->
+    <build>
+        <plugins>
+            <!-- maven打包插件 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 跳过测试 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

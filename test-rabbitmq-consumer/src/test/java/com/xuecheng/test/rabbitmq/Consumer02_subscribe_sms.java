@@ -5,11 +5,7 @@ import com.rabbitmq.client.*;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
-/**
- * @author Administrator
- * @version 1.0
- * @create 2018-06-17 18:22
- **/
+
 public class Consumer02_subscribe_sms {
     //队列名称
     private static final String QUEUE_INFORM_SMS = "queue_inform_sms";

@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    config:
+      server:
+        encrypt.enabled: false # 服务端关闭解密 Oracle JCE jar
+        git:
+          uri: https://github.com/taotao1024/confsvr.git
+          searchPaths: xcConfig/test
+          profile: dev
+          label: master
+          failFast: true
+          username: 1913475244@qq.com  #账号密码写真实的快一些我觉得，不使用也能访问,有点慢.
+          password: Lsy1997828
