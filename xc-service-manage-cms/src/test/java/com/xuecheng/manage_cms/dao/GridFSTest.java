@@ -31,19 +31,22 @@ public class GridFSTest {
     //上传文件
     @Test
     public void testAddGridFS() throws FileNotFoundException {
-        File file = new File("D:\\IDEA-workSpace\\xcEduUI\\static\\course.ftl");
+        File file = new File("D:\\IDEA-workSpace\\xcEduUI\\static\\Ncourse.ftl");
         FileInputStream fileInputStream = new FileInputStream(file);
         ObjectId objectId = gridFsTemplate.store(fileInputStream, "course.ftl");
         System.out.println(objectId);
         //5d3226cc3b5dba4d40923f03  ----  index_banner.ftl
-        //5e5fa55bbeae273f24c6b59d  ----  course.ftl
+
+        //5e5fa55bbeae273f24c6b59d  ----  old course.ftl 已废弃
+
+        //5ee0b12b84d2375d9c4fb989  ----  new course.ftl
     }
 
     //下载文件
     @Test
     public void testDownload() throws IOException {
         //根据id查询文件
-        GridFSFile id = gridFsTemplate.findOne(new Query(Criteria.where("_id").is("5d3226cc3b5dba4d40923f03")));
+        GridFSFile id = gridFsTemplate.findOne(new Query(Criteria.where("_id").is("5ee0b12b84d2375d9c4fb989")));
         //打开下载流
         GridFSDownloadStream gridFSDownloadStream = gridFSBucket.openDownloadStream(id.getObjectId());
         //下载流操作对象

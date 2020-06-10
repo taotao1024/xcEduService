@@ -36,8 +36,8 @@ ribbon:
   ConnectTimeout: 5000  #请求连接的超时时间
   ReadTimeout: 6000 #请求处理的超时时间
 course-publish:
-  siteId: 5a751fab6abb5044e0d19ea1
-  templateId: 5aec5dd70e661808240ab111
+  siteId: 5a751fab6abb5044e0d19ea1      # 站点id siteId
+  templateId: 5aec5dd70e661808240ab111  # 模板id  templateFileId
   previewUrl: http://www.xuecheng.com/cms/preview/
   pageWebPath: /course/detail/
   pagePhysicalPath: /course/detail/
