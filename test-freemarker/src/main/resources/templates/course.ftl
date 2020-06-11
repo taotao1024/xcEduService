@@ -14,8 +14,9 @@
 <body data-spy="scroll" data-target="#articleNavbar" data-offset="150">
 <!-- 页面头部 -->
 <!--#include virtual="/include/header.html"-->
+<!--页面头部 结束-->
 <div id="body">
-    <!--页面头部结束sss-->
+    <!-- 课程头 开始-->
     <div class="article-banner">
         <div class="banner-bg"></div>
         <div class="banner-info">
@@ -63,6 +64,9 @@
             </div>
         </div>
     </div>
+    <!-- 课程头 结束 -->
+
+
     <div class="article-cont">
         <div class="tit-list">
             <a href="javascript:;" id="articleClass" class="active">课程介绍</a>
@@ -74,6 +78,8 @@
             <div class="articleClass" style="display: block">
                 <!--<div class="rit-title">评价</div>-->
                 <div class="article-cont">
+
+                    <!-- 中 左开始 -->
                     <div class="article-left-box">
                         <div class="content">
 
@@ -137,13 +143,31 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 中 左结束 -->
 
+                    <!-- 中 右开始 -->
                     <div class="article-right-box">
+                        <!--机构信息 开始-->
                         <div class="about-teach">
-                            <!--机构信息-->
-                            <!--#include virtual="/company/company_info_template.html"-->
+                                <div class="teach-info">
+                                    <!--机构logo-->
+                                    <img src="/static/img/asset-logo.png" width="40px" alt="">
+                                    <p>学成教育</p>
+                                </div>
+                                <div class="teach-info">
+                                    <ul class="tree-list">
+                                        <li><p class="item-tt">好评度</p><span class="item-num">  97%  </span></li>
+                                        <li><p class="item-tt">课程数</p><span class="item-num js-item-num">234</span></li>
+                                        <li><p class="item-tt">学生数</p><span class="item-num js-item-num">78383</span></li>
+                                    </ul>
+                                </div>
+                                <div class="teach-info">
+                                    <p><a href="#" class="courselist_link">TA的课程</a></p>
+                                </div>
 
+                                <p class="synopsis">学有所成，为师之期望，君等成才者也，故曰学成是也。</p>
                         </div>
+                        <!-- 中 左 课程推荐开始 -->
                         <div class="learing-box">
                             <div class="tit">课程推荐</div>
                             <div class="item-box">
@@ -176,10 +200,12 @@
 
                             </div>
                         </div>
+                        <!-- 中 左 课程推荐结束 -->
                     </div>
-
+                    <!-- 中 右结束 -->
                 </div>
             </div>
+
             <div class="articleItem" style="display: none">
                 <div class="article-cont-catalog">
                     <div class="article-left-box">
@@ -308,7 +334,7 @@
                                 <p><a href="#" class="courselist_link">TA的课程</a></p>
                             </div>
 
-                            <p class="synopsis">所有所成，为师之期望，君等成才者也，故曰学成是也。</p>
+                            <p class="synopsis">学有所成，为师之期望，君等成才者也，故曰学成是也。</p>
                         </div>
                         <div class="learing-box">
                             <div class="tit">看过该课的同学也在看</div>
@@ -481,7 +507,7 @@
                                 <p><a href="#" class="courselist_link">TA的课程</a></p>
                             </div>
 
-                            <p class="synopsis"> 所有所成，为师之期望，君等成才者也，故曰学成是也。</p>
+                            <p class="synopsis"> 学有所成，为师之期望，君等成才者也，故曰学成是也。</p>
                         </div>
                         <div class="learing-box">
                             <div class="tit">看过该课的同学也在看</div>

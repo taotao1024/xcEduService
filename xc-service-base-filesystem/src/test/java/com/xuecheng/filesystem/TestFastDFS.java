@@ -1,7 +1,9 @@
 package com.xuecheng.filesystem;
 
 import com.xuecheng.framework.domain.filesystem.response.FileSystemCode;
+import com.xuecheng.framework.domain.filesystem.response.UploadFileResult;
 import com.xuecheng.framework.exception.ExceptionCast;
+import com.xuecheng.framework.model.response.CommonCode;
 import org.apache.commons.lang3.StringUtils;
 import org.csource.common.MyException;
 import org.csource.fastdfs.*;
@@ -14,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 
 /**
@@ -30,7 +33,7 @@ public class TestFastDFS {
 
         try {
             //加载fastdfs-client.properties配置文件
-           ClientGlobal.initByProperties("config/fastdfs-client.properties");
+            ClientGlobal.initByProperties("config/fastdfs-client.properties");
             //定义TrackerClient，用于请求TrackerServer
             TrackerClient trackerClient = new TrackerClient();
             //连接tracker
@@ -61,7 +64,7 @@ public class TestFastDFS {
     public void testDownload() {
         try {
             //加载fastdfs-client.properties配置文件
-           ClientGlobal.initByProperties("config/fastdfs-client.properties");
+            ClientGlobal.initByProperties("config/fastdfs-client.properties");
 
             //定义TrackerClient，用于请求TrackerServer
             TrackerClient trackerClient = new TrackerClient();
@@ -84,4 +87,6 @@ public class TestFastDFS {
             e.printStackTrace();
         }
     }
+
+
 }

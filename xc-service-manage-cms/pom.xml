@@ -24,21 +24,17 @@
                  </exclusion>
              </exclusions>
          </dependency>
-         <dependency>
-             <groupId>org.springframework.boot</groupId>
-             <artifactId>spring-boot-starter</artifactId>
-         </dependency>
+
          <dependency>
              <groupId>org.apache.servicecomb</groupId>
              <artifactId>spring-boot-starter-provider</artifactId>
              <version>1.0.0.B022</version>
          </dependency>-->
-
-        <!-- Oauth2 -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
+
         <!-- Eureka客户端 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

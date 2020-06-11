@@ -39,9 +39,9 @@ public class FileSystemController implements FileSystemControllerApi {
         String filename = multipartFile.getOriginalFilename();
         System.out.println(filename + "文件正在上传 ......");
         //文件检测
-        if (!filename.contains("jpg") || !filename.contains("png")) {
-            return new UploadFileResult(CommonCode.FAIL, null);
+        if (filename.contains("jpg") || filename.contains("png")) {
+            return fileSystemService.upload(multipartFile, filetag, businesskey, metadata);
         }
-        return fileSystemService.upload(multipartFile, filetag, businesskey, metadata);
+        return new UploadFileResult(CommonCode.FAIL, null);
     }
 }

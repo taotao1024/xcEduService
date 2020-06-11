@@ -59,12 +59,12 @@ zuul:
       sensitiveHeaders:
       ignoredHeaders:
     #CMS模块
-#    manage-cms:
-#      path: /cms/**
-#      serviceId: xc-service-manage-cms
-#      strip-prefix: false
-#      sensitiveHeaders:
-#      ignoredHeaders:
+    manage-cms:
+      path: /cms/**
+      serviceId: xc-service-manage-cms
+      strip-prefix: false
+      sensitiveHeaders:
+      ignoredHeaders:
     #系统服务
     manage-sys:
       path: /sys/**

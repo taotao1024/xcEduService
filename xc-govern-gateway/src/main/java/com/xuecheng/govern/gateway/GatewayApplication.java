@@ -1,8 +1,11 @@
 package com.xuecheng.govern.gateway;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+
+import javax.swing.table.TableRowSorter;
 
 /**
  * Zuul网关
@@ -16,9 +19,9 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @EnableZuulProxy
 public class GatewayApplication {
 
+
     public static void main(String[] args) {
         SpringApplication.run(GatewayApplication.class, args);
     }
-
 
 }
